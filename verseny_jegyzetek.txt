@@ -1,0 +1,70 @@
+'Verseny' projektmunka
+
+Adatbázis elindítása
+- xamp elindítása
+- új adatbázis létrehozása verseny néven
+- nyelv beállítása utf8_hungarian_ci
+
+Laravel projekt létrehozása
+- composer create-project laravel/laravel verseny-api
+- Adatbázis kapcsolat beállítása a .env fájlban
+
+Új tábla hozzáadása
+- php artisan make:migration create_diakok_table --create=diakok
+- migration szkripthez az oszlopok hozzáadása
+- új migrációk lefuttatása: php artisan migrate
+- összes migráció lefuttatása: php artisan migrate:fresh
+
+Controller és Modell létrehozása
+- php artisan make:controller --model=Diak --resource DiakController
+
+Model
+- Fillable változóba az oszlop nevek felsorolása
+- Table változóba a tábla neve
+
+Controller
+- Függvények implementálása
+
+Egyedi controllernél a különbségek:
+- generálásnál nem muszáj a --resource
+- az api.php-ban meg kell adni a hívás típusát (pl post vagy get), és a hívandó fügvény nevét. Pl:
+Route::post('diakok/login', [DiakController::class, 'login']);
+
+Routing
+- Api php kiegészítése az útvonal és a Controller összekötésével:
+Route::resource('diakok', DiakController::class);
+
+Apik elindítása
+- php artisan serve
+- Apik tesztelhetőek a POSTMAN-ben
+
+Elérhető Apik
+
+Diákok:
+POST http://127.0.0.1:8000/api/diakok/signup
+- új diák regisztrációja
+- ellenőrzi a hiányzó adatokatokat
+- ellenőrzi hogy már létezik-e a username
+
+POST http://127.0.0.1:8000/api/diakok/login
+- diák bejelentkeztetése
+- ellenőrzi az adatbázisban a felhasználónév-jelszó párost
+- találat esetén visszaadja a diák azonosítóját
+
+Tanárok:
+POST http://127.0.0.1:8000/api/tanarok/signup
+- új tanár regisztrációja
+- ellenőrzi a hiányzó adatokatokat
+- ellenőrzi hogy már létezik-e a username
+
+Tanárok:
+POST http://127.0.0.1:8000/api/tanarok/login
+- új tanár regisztrációja
+- ellenőrzi a hiányzó adatokatokat
+- ellenőrzi hogy már létezik-e a username
+
+
+
+
+kérdések:
+- tábla és mező nevek magyarul vagy angolul legyenek?
