@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\DiakController;
+use App\Http\Controllers\KerdesController;
 use App\Http\Controllers\TanarController;
+use App\Http\Controllers\VersenyDiakController;
+use App\Http\Controllers\VersenyTanarController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +30,21 @@ Route::post('diakok/login', [DiakController::class, 'login']);
 //Tanárok
 Route::post('tanarok/signup', [TanarController::class,'signup']);
 Route::post('tanarok/login', [TanarController::class,'login']);
+
+//Versenyek - Tanároknak
+Route::get('verseny/tanar/list', [VersenyTanarController::class,'list']);
+Route::post('verseny/tanar/create', [VersenyTanarController::class,'create']);
+Route::put('verseny/tanar/update', [VersenyTanarController::class,'update']);
+Route::delete('verseny/tanar/delete', [VersenyTanarController::class,'delete']);
+
+//Kérdések
+Route::get('kerdes/list', [KerdesController::class,'list']);
+Route::post('kerdes/create', [KerdesController::class,'create']);
+Route::put('kerdes/update', [KerdesController::class,'update']);
+Route::delete('kerdes/delete', [KerdesController::class,'delete']);
+
+
+//Versenyek - Diákoknak
+Route::get('verseny/diak/list', [VersenyDiakController::class,'list']);
+Route::get('verseny/diak/view', [VersenyDiakController::class,'view']);
+Route::post('verseny/diak/submit', [VersenyDiakController::class,'submit']);
