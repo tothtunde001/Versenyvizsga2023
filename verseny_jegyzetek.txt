@@ -27,7 +27,7 @@ Controller
 
 Egyedi controllernél a különbségek:
 - generálásnál nem muszáj a --resource
-- az api.php-ban meg kell adni a hívás típusát (pl post vagy get), és a hívandó fügvény nevét. Pl:
+- az api.php-ban meg kell adni a hívás típusát (pl post vagy get), és a hívandó függvény nevét. Pl:
 Route::post('diakok/login', [DiakController::class, 'login']);
 
 Routing
@@ -67,4 +67,3 @@ POST http://127.0.0.1:8000/api/tanarok/login
 
 
 kérdések:
-- tábla és mező nevek magyarul vagy angolul legyenek?

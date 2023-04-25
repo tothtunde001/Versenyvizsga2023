@@ -13,9 +13,14 @@ return new class extends Migration
     {
         Schema::create('kerdesek', function (Blueprint $table) {
             $table->id();
-            $table->string('versenyid');
-            $table->string('kerdesek');
-            $table->integer('pontszam');
+            $table->string('competitionId');
+            $table->string('question');
+            $table->string('answer1');
+            $table->string('answer2');
+            $table->string('answer3');
+            $table->string('answer4');
+            $table->string('correctAnswer');
+            //$table->integer('point');
             $table->timestamps();
         });
     }
