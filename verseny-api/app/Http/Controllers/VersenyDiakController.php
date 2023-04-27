@@ -9,7 +9,7 @@ class VersenyDiakController extends Controller
 
     public function list(string $diakId)
     {
-        //TODO: Versenyek listázása. Meg kell jelölni a kitöltött versenyeket
+        //TODO: Versenyek listázása. Meg kell jelölni a kitöltött versenyeket.
     }
 
     public function view(string $versenyId)
