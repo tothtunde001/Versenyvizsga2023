@@ -1,0 +1,23 @@
+﻿<Page x:Class="TantargyVersenyek.RegistrationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TantargyVersenyek"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RegistrationPage">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center">
+            <Label Content="Regisztráció" Width="158" FontSize="24"/>
+            <TextBox x:Name="UserNameTextBox" HorizontalAlignment="Left" Margin="0,80,0,0" Height="22" TextWrapping="Wrap" Text="Felhasználónév" VerticalAlignment="Top" Width="171" Grid.Column="1"/>
+            <TextBox x:Name="PasswordTextBox"  Margin="0,10,0,0" Height="24" TextWrapping="Wrap" Text="Jelszó" Width="171" SelectionOpacity="0" Grid.Column="1"/>
+            <TextBox x:Name="EmailTextBox"  Margin="0,10,0,0" Height="24" TextWrapping="Wrap" Text="E-mail" Width="171" SelectionOpacity="0" Grid.Column="1"/>
+            <TextBox x:Name="AddrTextBox"  Margin="0,10,0,0" Height="24" TextWrapping="Wrap" Text="Addr" Width="171" SelectionOpacity="0" Grid.Column="1"/>
+            <TextBox x:Name="PhoneNumberTextBox"  Margin="0,10,0,0" Height="24" TextWrapping="Wrap" Text="Phone Number" Width="171" SelectionOpacity="0" Grid.Column="1"/>    
+            <Button Content="Létrehozás" Margin="0,100,0,0" Width="100" Background="#FFB88C8C" Height="42" Click="CreateUser_Click" RenderTransformOrigin="0.971,5.015"/>
+            <Button Content="Vissza" Margin="0,80,0,0"  Width="75" Click="BackBtn_Click" />
+        </StackPanel>
+    </Grid>
+</Page>
