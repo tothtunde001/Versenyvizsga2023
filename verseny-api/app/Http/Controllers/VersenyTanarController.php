@@ -16,12 +16,10 @@ class VersenyTanarController extends Controller
             "status" => 'OK',
             "data" => $versenyek
         ];
-
     }
 
     public function create(Request $request)
     {
-
         // Input validálása
 
         $validator = Validator::make($request->all(), [
@@ -35,7 +33,6 @@ class VersenyTanarController extends Controller
                 "message" => "Hiányzó adatok a verseny létrehozásához."
             ];
         }
-
 
         $verseny = Verseny::create($request->all());
         return [

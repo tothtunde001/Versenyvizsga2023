@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('answer2');
             $table->string('answer3');
             $table->string('answer4');
-            $table->string('correctAnswer');
+            $table->integer('correctAnswer');
             //$table->integer('point');
             $table->timestamps();
         });

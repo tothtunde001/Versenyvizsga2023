@@ -38,10 +38,10 @@ Route::put('verseny/tanar/update/{verseny}', [VersenyTanarController::class,'upd
 Route::delete('verseny/tanar/delete/{verseny}', [VersenyTanarController::class,'delete']);
 
 //Kérdések
-Route::get('kerdes/list', [KerdesController::class,'list']);
+Route::get('kerdes/list/{versenyId}', [KerdesController::class,'list']);
 Route::post('kerdes/create', [KerdesController::class,'create']);
-Route::put('kerdes/update', [KerdesController::class,'update']);
-Route::delete('kerdes/delete', [KerdesController::class,'delete']);
+Route::put('kerdes/update/{kerdes}', [KerdesController::class,'update']);
+Route::delete('kerdes/delete/{kerdes}', [KerdesController::class,'delete']);
 
 
 //Versenyek - Diákoknak
