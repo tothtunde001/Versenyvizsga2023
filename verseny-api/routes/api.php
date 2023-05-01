@@ -45,6 +45,6 @@ Route::delete('kerdes/delete/{kerdes}', [KerdesController::class,'delete']);
 
 
 //Versenyek - Diákoknak
-Route::get('verseny/diak/list', [VersenyDiakController::class,'list']);
-Route::get('verseny/diak/view', [VersenyDiakController::class,'view']);
+Route::get('verseny/diak/list/{diakId}', [VersenyDiakController::class,'list']);
+Route::get('verseny/diak/view/{diakId}/{verseny}', [VersenyDiakController::class,'view']);
 Route::post('verseny/diak/submit', [VersenyDiakController::class,'submit']);
