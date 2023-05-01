@@ -9,15 +9,16 @@
       Title="RegistrationPage">
 
     <Grid>
+        <Button Name="LoginBtn" Content="Bejelentkezés" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Background="#FFB88C8C" Height="42" Click="Login_Click" Margin="662,26,0,0"/>
+
         <StackPanel HorizontalAlignment="Center">
             <Label Content="Regisztráció" Width="158" FontSize="24"/>
             <TextBox x:Name="UserNameTextBox" HorizontalAlignment="Left" Margin="0,80,0,0" Height="22" TextWrapping="Wrap" Text="Felhasználónév" VerticalAlignment="Top" Width="171" Grid.Column="1"/>
             <TextBox x:Name="PasswordTextBox"  Margin="0,10,0,0" Height="24" TextWrapping="Wrap" Text="Jelszó" Width="171" SelectionOpacity="0" Grid.Column="1"/>
             <TextBox x:Name="EmailTextBox"  Margin="0,10,0,0" Height="24" TextWrapping="Wrap" Text="E-mail" Width="171" SelectionOpacity="0" Grid.Column="1"/>
-            <TextBox x:Name="AddrTextBox"  Margin="0,10,0,0" Height="24" TextWrapping="Wrap" Text="Addr" Width="171" SelectionOpacity="0" Grid.Column="1"/>
-            <TextBox x:Name="PhoneNumberTextBox"  Margin="0,10,0,0" Height="24" TextWrapping="Wrap" Text="Phone Number" Width="171" SelectionOpacity="0" Grid.Column="1"/>    
-            <Button Content="Létrehozás" Margin="0,100,0,0" Width="100" Background="#FFB88C8C" Height="42" Click="CreateUser_Click" RenderTransformOrigin="0.971,5.015"/>
-            <Button Content="Vissza" Margin="0,80,0,0"  Width="75" Click="BackBtn_Click" />
+            <TextBox x:Name="FullnameTextBox"  Margin="0,10,0,0" Height="24" TextWrapping="Wrap" Text="Teljes név" Width="171" SelectionOpacity="0" Grid.Column="1"/>
+            <Button Content="Létrehozás" Margin="0,10,0,0" Width="100" Background="#FFB88C8C" Height="42" Click="CreateUser_Click" RenderTransformOrigin="0.971,5.015"/>
         </StackPanel>
+        <Label x:Name="MessageLabel" Content="" HorizontalAlignment="Left" Margin="90,365,0,0" VerticalAlignment="Top" Width="616" Height="42" Foreground="Black" FontSize="14"/>
     </Grid>
 </Page>

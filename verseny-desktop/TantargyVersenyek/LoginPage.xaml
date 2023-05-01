@@ -11,9 +11,10 @@
     <Grid>
         <Button Name="RegistrationBtn" Content="Regisztráció" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Background="#FFB88C8C" Height="42" Click="Registration_Click" Margin="662,26,0,0"/>
         <Button Content="Bejelentkezés" HorizontalAlignment="Left" Margin="348,276,0,0" VerticalAlignment="Top" Width="100" Background="#FFB88C8C" Height="42" Click="Login_Click"/>
-        <TextBox x:Name="PasswordTextBox"  HorizontalAlignment="Left" Height="24" Margin="315,200,0,0" TextWrapping="Wrap" Text="Jelszó" VerticalAlignment="Top" Width="171" SelectionOpacity="0" Visibility="Hidden"/>
-        <TextBox x:Name="UserTextBox"  HorizontalAlignment="Left" Height="22" Margin="315,158,0,0" TextWrapping="Wrap" Text="Felhasználónév" VerticalAlignment="Top" Width="171" Visibility="Hidden"/>
-        <Label x:Name="LoginLabel" Content="Bejelentkezés" HorizontalAlignment="Left" Margin="328,26,0,0" VerticalAlignment="Top" Width="158" FontSize="24" Height="42" Visibility="Hidden"/>
+        <TextBox x:Name="PasswordTextBox"  HorizontalAlignment="Left" Height="24" Margin="315,200,0,0" TextWrapping="Wrap" Text="Jelszó" VerticalAlignment="Top" Width="171" SelectionOpacity="0"/>
+        <TextBox x:Name="UserTextBox"  HorizontalAlignment="Left" Height="22" Margin="315,158,0,0" TextWrapping="Wrap" Text="Felhasználónév" VerticalAlignment="Top" Width="171"/>
+        <Label x:Name="LoginLabel" Content="Bejelentkezés" HorizontalAlignment="Left" Margin="328,26,0,0" VerticalAlignment="Top" Width="158" FontSize="24" Height="42"/>
+        <Label x:Name="MessageLabel" Content="" HorizontalAlignment="Left" Margin="90,365,0,0" VerticalAlignment="Top" Width="616" Height="42" Foreground="Black" FontSize="14"/>
 
     </Grid>
 </Page>

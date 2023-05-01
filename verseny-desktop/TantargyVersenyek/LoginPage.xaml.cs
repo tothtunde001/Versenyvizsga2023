@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Newtonsoft.Json;
+using System;
+using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TantargyVersenyek
 {
@@ -21,18 +13,15 @@ namespace TantargyVersenyek
     public partial class LoginPage : Page
     {
         Frame mainFrame;
+
+        HttpClient client = new HttpClient();
+
         //konstruktor
         public LoginPage(Frame navigationFrame)
         {
             InitializeComponent();
+            client.BaseAddress = new Uri("http://127.0.0.1:8000/api/");
             mainFrame = navigationFrame;
-        }
-        //konstrikutor vége
-
-        //konstruktor
-        public LoginPage()
-        {
-            InitializeComponent();
         }
         //konstrikutor vége
 
@@ -41,18 +30,41 @@ namespace TantargyVersenyek
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Login_Click(object sender, RoutedEventArgs e)
+        private async void Login_Click(object sender, RoutedEventArgs e)
         {
-            PasswordTextBox.Visibility = Visibility.Visible;
-            UserTextBox.Visibility = Visibility.Visible;
-            LoginLabel.Visibility = Visibility.Visible;
+            // Összerakjuk a request body-t a bejelentkezéshez
+            var loginData = new
+            {
+                username = UserTextBox.Text,
+                password = PasswordTextBox.Text,
+            };
+            string jsonData = JsonConvert.SerializeObject(loginData);
+            var content = new StringContent(jsonData.ToString(), Encoding.UTF8, "application/json");
 
-            //Button btn = new Button();
-            //GridTarolo.Children.Add(btn);
-            //Button btn2 = new Button();
-            //GridTarolo.Children.Add(btn2);
-            //Button btn3 = new Button();
-            //GridTarolo.Children.Add(btn3);
+            // Meghívjuk a bejelentkezés API-t
+            HttpResponseMessage response = client.PostAsync("tanarok/login", content).Result;
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(response);
+                MessageLabel.Content = "Bejelentkezés sikertelen, ismeretlen hiba.";
+                return;
+            }
+
+            var responseBody = await response.Content.ReadAsStringAsync();
+            var body = JsonConvert.DeserializeObject<LoginResponse>(responseBody);
+
+            if (!body.Status.Equals("OK")) {
+                // Kiírjuk a hibaüzenetet a response-ból
+                MessageLabel.Content = body.Message;
+                return;
+            }
+
+            // Sikeres bejelentkezés
+            MessageLabel.Content = body.Message;
+
+            //Itt kell átirányítani a verseny oldalra
+            mainFrame.Navigate(new CompetitionList(mainFrame));
+
         }
 
         /// <summary>
@@ -63,9 +75,12 @@ namespace TantargyVersenyek
         private void Registration_Click(object sender, RoutedEventArgs e)
         {
             mainFrame.Navigate(new RegistrationPage(mainFrame));
-
-            //RegistrationWindow registrationWindow = new RegistrationWindow();
-            //registrationWindow.Show();
         }
+    }
+
+    public class LoginResponse
+    {
+        public string Status { get; set; }
+        public string Message { get; set; }
     }
 }

@@ -58,7 +58,7 @@ namespace TantargyVersenyek
         {
             string myConnectionString;
             myConnectionString = "server=localhost;uid=root;" +
-                "pwd=012345;";// database=eticketingdb";
+                "pwd=;";// database=eticketingdb";
 
             try
             {
