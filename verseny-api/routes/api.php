@@ -34,8 +34,8 @@ Route::post('tanarok/login', [TanarController::class,'login']);
 //Versenyek - Tanároknak
 Route::get('verseny/tanar/list', [VersenyTanarController::class,'list']);
 Route::post('verseny/tanar/create', [VersenyTanarController::class,'create']);
-Route::put('verseny/tanar/update', [VersenyTanarController::class,'update']);
-Route::delete('verseny/tanar/delete', [VersenyTanarController::class,'delete']);
+Route::put('verseny/tanar/update/{verseny}', [VersenyTanarController::class,'update']);
+Route::delete('verseny/tanar/delete/{verseny}', [VersenyTanarController::class,'delete']);
 
 //Kérdések
 Route::get('kerdes/list', [KerdesController::class,'list']);

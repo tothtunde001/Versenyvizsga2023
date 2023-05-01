@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('versenyek', function (Blueprint $table) {
             $table->id();
-            $table->string('verseny_neve');
+            $table->string('competition_name');
+            $table->string('description');
             $table->timestamps();
         });
     }
