@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('kitoltottkerdesek', function (Blueprint $table) {
             $table->id();
-            $table->integer('kitoltversenyid');
-            $table->integer('kerdesid');
-            $table->integer('diakvalasz');
+            $table->integer('submittedCompetitionId');
+            $table->integer('questionId');
+            $table->integer('studentAnswer');
             $table->timestamps();
         });
     }

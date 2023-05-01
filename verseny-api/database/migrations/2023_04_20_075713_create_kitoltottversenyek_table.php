@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('kitoltottversenyek', function (Blueprint $table) {
             $table->id();
-            $table->string('diakid');
-            $table->integer('versenyid');
-            $table->integer('osszpontszam');
+            $table->string('studentId');
+            $table->string('competitionId');
             $table->timestamps();
         });
     }
