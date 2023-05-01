@@ -2,6 +2,8 @@ DELETE FROM diakok;
 DELETE FROM tanarok;
 DELETE FROM versenyek;
 DELETE FROM kerdesek;
+DELETE FROM kitoltottkerdesek;
+DELETE FROM kitoltottversenyek;
 
 INSERT INTO `tanarok` (`id`, `username`, `password`, `email`, `fullname`, `subject`, `class`) VALUES
 (1, 'Nagy_István','1p2l3d025795', 'nagy.istvan@gmail.com', 'Nagy István', 'matek', '10.b'),
@@ -25,3 +27,10 @@ INSERT INTO kerdesek(`id`, `competitionid`,`question`,`answer1`,`answer2`,`answe
 (4, '1','Hány oldala van egy trapéznak?','1', '2', '3', '4', 4),
 (5, '2','Hány füle van egy nyúlnak?', 'nincs füle', '1', '2', '2 pár', 3),
 (6, '3','Az alábbiak közül melyik nem C-típusú programozási nyelv?', 'C', 'C++', 'C#', 'Java', 4);
+
+INSERT INTO kitoltottversenyek(`id`, `studentId`, `competitionId`) VALUES
+(1, 1, 2);
+
+INSERT INTO kitoltottkerdesek(`id`, `submittedCompetitionId`, `questionId`, `studentAnswer`) VALUES
+(1, 1, 2, 1),
+(2, 1, 5, 4)

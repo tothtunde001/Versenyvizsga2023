@@ -15,7 +15,7 @@ class VersenyDiakController extends Controller
     public function list(string $diakId)
     {
         //Kitöltött versenyId-k összegyűjtése
-        $kitoltottVersenyekId = collectSubmittedCompetitionIds($diakId);
+        $kitoltottVersenyekId = $this->collectSubmittedCompetitionIds($diakId);
 
         // Összes verseny listázása
         $versenyek = Verseny::all();
