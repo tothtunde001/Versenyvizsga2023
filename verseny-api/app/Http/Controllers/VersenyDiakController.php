@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Validator;
 class VersenyDiakController extends Controller
 {
 
+    /**
+     * GET http://127.0.0.1:8000/api/verseny/diak/list/{diakId}
+     * - versenyek listázása
+     * - minden versenynél meg van jelölve, hogy azt már beküldte-e a diák
+     */
     public function list(string $diakId)
     {
         //Kitöltött versenyId-k összegyűjtése
@@ -32,6 +37,12 @@ class VersenyDiakController extends Controller
         ];
     }
 
+    /**
+     * GET http://127.0.0.1:8000/api/verseny/diak/view/{diakId}/{verseny}
+     * - kérdések kilistázása az adott versenyhez
+     * - ha a diák még nem küldött megoldást, akkor a helyes válaszok nem látszanak
+     * - ha már küldött megoldást, akkor a helyes válaszokat és a beküldött válaszokat is tartalmazza a válasz
+     */
     public function view(string $diakId, Verseny $verseny)
     {
         //Kitöltött versenyId-k összegyűjtése
@@ -74,6 +85,12 @@ class VersenyDiakController extends Controller
         ];
     }
 
+    /**
+     * POST http://127.0.0.1:8000/api/verseny/diak/submit
+     * - megoldás beküldése egy versenyre
+     * - meg kell adni a diák és a verseny azonosítóját
+     * - valamint az összes versenyhez kapcsolódó kérdésre a választ
+     */
     public function submit(Request $request)
     {
         // Input validálása

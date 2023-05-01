@@ -40,7 +40,7 @@ Apik elindítása
 
 Elérhető Apik
 
-Diákok:
+---Diákok:
 POST http://127.0.0.1:8000/api/diakok/signup
 - új diák regisztrációja
 - ellenőrzi a hiányzó adatokatokat
@@ -51,19 +51,58 @@ POST http://127.0.0.1:8000/api/diakok/login
 - ellenőrzi az adatbázisban a felhasználónév-jelszó párost
 - találat esetén visszaadja a diák azonosítóját
 
-Tanárok:
+---Tanárok:
 POST http://127.0.0.1:8000/api/tanarok/signup
 - új tanár regisztrációja
 - ellenőrzi a hiányzó adatokatokat
 - ellenőrzi hogy már létezik-e a username
 
-Tanárok:
 POST http://127.0.0.1:8000/api/tanarok/login
 - új tanár regisztrációja
 - ellenőrzi a hiányzó adatokatokat
 - ellenőrzi hogy már létezik-e a username
 
+---Kérdések:
+POST http://127.0.0.1:8000/api/kerdes/create
+- új kérdés létrehozása
+- meg kell adni a verseny azonosítót is
+- a válaszlehetőségeket és a helyes választ is meg kell adni
 
+GET http://127.0.0.1:8000/api/kerdes/list/{versenyId}
+- Kérdések listázása egy adott versenyhez
+- A verseny azonosítót paraméterben kell megadni
 
+PUT http://127.0.0.1:8000/api/kerdes/update/{kerdes}
+- Kérdés módosítása
 
-kérdések:
+DELETE http://127.0.0.1:8000/api/verseny/tanar/delete/{kerdes}
+- Kérdés törlése
+
+---Verseny (Tanároknak):
+POST http://127.0.0.1:8000/api/verseny/tanar/create
+- új verseny létrehozása
+- a nevet és a leírást kell megadni
+
+GET http://127.0.0.1:8000/api/verseny/tanar/list
+- az összes verseny kilistázása
+
+PUT http://127.0.0.1:8000/api/verseny/tanar/update/{verseny}
+- verseny módosítása
+
+DELETE http://127.0.0.1:8000/api/verseny/tanar/delete/{verseny}
+- verseny törlése
+
+---Verseny (Diákoknak)
+POST http://127.0.0.1:8000/api/verseny/diak/submit
+- megoldás beküldése egy versenyre
+- meg kell adni a diák és a verseny azonosítóját
+- valamint az összes versenyhez kapcsolódó kérdésre a választ
+
+GET http://127.0.0.1:8000/api/verseny/diak/list/{diakId}
+- versenyek listázása
+- minden versenynél meg van jelölve, hogy azt már beküldte-e a diák
+
+GET http://127.0.0.1:8000/api/verseny/diak/view/{diakId}/{verseny}
+- kérdések kilistázása az adott versenyhez
+- ha a diák még nem küldött megoldást, akkor a helyes válaszok nem látszanak
+- ha már küldött megoldást, akkor a helyes válaszokat és a beküldött válaszokat is tartalmazza a válasz

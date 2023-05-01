@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Validator;
 class VersenyTanarController extends Controller
 {
 
+    /**
+     * GET http://127.0.0.1:8000/api/verseny/tanar/list
+     * - az összes verseny kilistázása
+     */
     public function list()
     {
         $versenyek = Verseny::all();
@@ -18,6 +22,11 @@ class VersenyTanarController extends Controller
         ];
     }
 
+    /**
+     * POST http://127.0.0.1:8000/api/verseny/tanar/create
+     * - új verseny létrehozása
+     * - a nevet és a leírást kell megadni
+     */
     public function create(Request $request)
     {
         // Input validálása
@@ -42,6 +51,10 @@ class VersenyTanarController extends Controller
         ];
     }
 
+    /**
+     * PUT http://127.0.0.1:8000/api/verseny/tanar/update/{verseny}
+     * - verseny módosítása
+     */
     public function update(Request $request, Verseny $verseny)
     {
         // Input validálása
@@ -68,6 +81,10 @@ class VersenyTanarController extends Controller
 
     }
 
+    /**
+     * DELETE http://127.0.0.1:8000/api/verseny/tanar/delete/{verseny}
+     * - verseny törlése
+     */
     public function delete(Verseny $verseny)
     {
         $verseny->delete();
