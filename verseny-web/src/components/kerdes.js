@@ -5,7 +5,12 @@ function Kerdes(props) {
 
     let answerNumbers = [1, 2, 3, 4];
 
+    // A kattintott válaszok bejelölése
     const handleAnswerQuestion = (questionId, answerId) => {
+        if (submitted) {
+            return; // Ha már kitöltöttük a versenyt, akkor nem változtatunk
+        }
+
         for (let i = 1; i < 5; i++) {
             let button = document.getElementById('answer-button-' + questionId + '-' + i);
 

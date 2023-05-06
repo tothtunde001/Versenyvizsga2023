@@ -12,9 +12,12 @@ function Navbar() {
     const userName = localStorage.getItem("userName");
 
     const logout = () => {
-        localStorage.removeItem("userId");
-        localStorage.removeItem("userName");
-        navigate("/");
+        if (confirm("Biztosan kijelentkezel?")) {
+            localStorage.removeItem("userId");
+            localStorage.removeItem("userName");
+            navigate("/bejelentkezes");
+        }
+        
     }
 
     let button;

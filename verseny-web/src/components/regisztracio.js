@@ -40,12 +40,11 @@ function Regisztracio() {
         .catch(error => {
             console.log(error.message);
         })
-
     }
 
     return (
-        <div className='singup template d-flex justify-content-center align-items-center 100-w vh-100 bg-primary'>
-            <div className='form-container p-5 rounded bg-white'>
+        <div className='singup template d-flex justify-content-center align-items-center 100-w vh-100'>
+            <div className='form-container p-5 mt-5 rounded bg-white'>
                 <form onSubmit={signUp}>
                     <h3 className='text-center'>Regisztráció</h3>
 

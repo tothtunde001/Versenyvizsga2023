@@ -42,8 +42,8 @@ function Bejelentkezes() {
 
     return (
 
-        <div className='login template d-flex justify-content-center align-items-center 100-w vh-100 bg-primary'>
-            <div className='form-container p-5 rounded bg-white'>
+        <div className='login template d-flex justify-content-center align-items-center 100-w'>
+            <div className='form-container p-5 mt-5 rounded bg-white'>
                 <form onSubmit={login}>
                     <h3 className='text-center'>Bejelentkezés</h3>
 
