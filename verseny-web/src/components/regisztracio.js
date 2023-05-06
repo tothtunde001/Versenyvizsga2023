@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+
 
 function Regisztracio() {
     return (
@@ -22,15 +24,13 @@ function Regisztracio() {
                         <input type="password" placeholder='enter Password' className='form-control'/>
                     </div>
 
-                    <div className='mb2'>
-                        <input type="checkbox" className='custom-control custom-checkbox' id='check'/>
-                        <label htmlFor="check" className='custom-input-label ms-2'>Emlékezz rám</label>
-                    </div>
-
-                    <div className='d-grid'>
+                    <div className='d-grid mt-2'>
                         <button className='btn btn-primary'>Regisztráció</button>
                     </div>
-                    <p className='text-end mt-2'>Már regisztráltál!<link to ="/" className="ms-2">Regisztráció</link></p>
+                    <p className='text-end mt-2'>
+                        Már regisztráltál?
+                        <Link to="/bejelentkezes" className="ms-2">Bejelentkezés</Link>
+                    </p>
                 </form>
             </div>
         </div>

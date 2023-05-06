@@ -1,5 +1,7 @@
 import React from 'react';
-import './login.css';
+import './bejelentkezes.css';
+import { Link } from "react-router-dom";
+
 
 function Bejelentkezes() {
     return (
@@ -19,15 +21,13 @@ function Bejelentkezes() {
                         <input type="password" placeholder='enter Password' className='form-control'/>
                     </div>
 
-                    <div className='mb2'>
-                        <input type="checkbox" className='custom-control custom-checkbox' id='check'/>
-                        <label htmlFor="check" className='custom-input-label ms-2'>Emlékezz rám</label>
+                    <div className='d-grid mt-2'>
+                        <button className='btn btn-primary '>Bejelentkezés</button>
                     </div>
-
-                    <div className='d-grid'>
-                        <button className='btn btn-primary'>Bejelentkezés</button>
-                    </div>
-                    <p className='text-right'>Elfelejtett<a href="">jelszó?</a><link to href="/singup" className="ms-2">Regisztráció</link></p>
+                    <p className='text-right mt-2'>
+                        Most jársz itt először?
+                        <Link to="/regisztracio" className="ms-2">Regisztráció</Link>
+                    </p>
                 </form>
             </div>
         </div>
