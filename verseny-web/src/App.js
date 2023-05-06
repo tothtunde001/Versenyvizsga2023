@@ -10,7 +10,7 @@ import Navbar from "./components/menu/Navbar";
 import Regisztracio from "./components/regisztracio";
 import Bejelentkezes from "./components/bejelentkezes";
 import VersenyForm from "./components/verseny-form";
-
+import 'bootstrap/dist/css/bootsrtap.min.css';
 
 export default function App() {
   return (

@@ -1,0 +1,27 @@
+.form-container{
+    margin:4rem 6rem;
+    color:black;
+}
+.form-container form{
+    padding-top: 3rem;
+    display:flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+}
+.form-container input{
+    heigth:3rem;
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+    border-radius:0.3rem;
+    border:1px solid gray;
+}
+.form-container textarea{
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+    border-radius:0.3rem;
+    border:1px solid gray;
+}
+.form-container button{
+    display:inline;
+}
