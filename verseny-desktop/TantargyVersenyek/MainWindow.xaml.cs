@@ -46,7 +46,7 @@ namespace TantargyVersenyek
             var cmd = new MySqlCommand();
             cmd.Connection = conn;
 
-            cmd.CommandText = "CREATE DATABASE IF NOT EXISTS tantargy_versenyek";
+            cmd.CommandText = "CREATE DATABASE IF NOT EXISTS verseny";
             cmd.ExecuteNonQuery();
 
 

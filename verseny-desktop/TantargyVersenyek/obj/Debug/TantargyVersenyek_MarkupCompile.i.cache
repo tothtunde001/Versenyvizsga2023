@@ -4,17 +4,17 @@
 exe
 C#
 .cs
-C:\Users\Csilla\Desktop\Vizsgamunka\Verseny\verseny-desktop\TantargyVersenyek\obj\Debug\
+C:\Users\Csuka Lajos\Documents\Oktatás\Versenyvizsga2023-master\Versenyvizsga2023-master\verseny-desktop\TantargyVersenyek\obj\Debug\
 TantargyVersenyek
 none
 false
 DEBUG;TRACE
-C:\Users\Csilla\Desktop\Vizsgamunka\Verseny\verseny-desktop\TantargyVersenyek\App.xaml
-4-2081752573
+C:\Users\Csuka Lajos\Documents\Oktatás\Versenyvizsga2023-master\Versenyvizsga2023-master\verseny-desktop\TantargyVersenyek\App.xaml
+6871286828
 
-9-392773875
-57-209702979
-CompetitionListPage.xaml;LoginPage.xaml;MainWindow.xaml;RegistrationPage.xaml;
+16-1774274061
+57-1605295701
+CompetitionListPage.xaml;CreateCompetitionPage.xaml;EditPage.xaml;LoginPage.xaml;MainWindow.xaml;RegistrationPage.xaml;
 
 True
 

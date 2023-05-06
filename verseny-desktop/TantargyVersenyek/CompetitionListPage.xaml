@@ -4,14 +4,52 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TantargyVersenyek"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="CompetitionListPage">
+      mc:Ignorable="d" d:DesignWidth="800"
+      Title="CompetitionListPage" Height="480">
 
     <Grid>
-        <Button Name="NewBtn" Content="Új verseny" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Background="#FFB88C8C" Height="42" Click="NewCompetition_Click" Margin="662,26,0,0"/>
-        <Label x:Name="CompetitionLabel" Content="Versenyek" HorizontalAlignment="Left" Margin="328,26,0,0" VerticalAlignment="Top" Width="158" FontSize="24" Height="42"/>
-        <Label x:Name="MessageLabel" Content="" HorizontalAlignment="Left" Margin="90,365,0,0" VerticalAlignment="Top" Width="616" Height="42" Foreground="Black" FontSize="14"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label x:Name="CompetitionLabel" Content="Versenyek" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" Height="42"/>
 
+        </StackPanel>
+        <Button Grid.Row="2" Name="LogoutBtn" Content="Kijelentkezés" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100"  Height="42" Click="LogoutBtn_Click"/>
+        <Button Name="NewBtn" Content="Új verseny" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100"  Height="42" Click="NewCompetition_Click"/>
+
+        <Label Grid.Row="2" x:Name="MessageLabel" Content="" HorizontalAlignment="Right" Margin="90,365,0,0" VerticalAlignment="Top" Width="616" Height="42" Foreground="Black" FontSize="14"/>
+        <DataGrid Grid.Row="1" Name="VersenyekDataGrid"  AutoGenerateColumns="False" CanUserAddRows="False"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+RowBackground="#fff" FontWeight="Bold" Foreground="#525252"
+ScrollViewer.CanContentScroll="True" Height="390" MaxHeight="390"
+AlternatingRowBackground="#f2f2f2" BorderBrush="#000" BorderThickness="1"
+ScrollViewer.HorizontalScrollBarVisibility="Visible"
+ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Path='Id'}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Competition" Binding="{Binding Path='Competition'}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Description" Binding="{Binding Path='Description'}" IsReadOnly="True" />
+                <DataGridTemplateColumn Header="Edit">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="EditBtn" Content="Edit" Click="EditBtn_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="DeleteBtn" Content="Delete" Click="DeleteBtn_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

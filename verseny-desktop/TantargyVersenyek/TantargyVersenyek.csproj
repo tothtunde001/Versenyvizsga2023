@@ -176,15 +176,34 @@
     <Compile Include="CompetitionListPage.xaml.cs">
       <DependentUpon>CompetitionListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateCompetitionPage.xaml.cs">
+      <DependentUpon>CreateCompetitionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditPage.xaml.cs">
+      <DependentUpon>EditPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\DataGridModel.cs" />
+    <Compile Include="Model\EditDataGridModel.cs" />
+    <Compile Include="Model\Kerdes.cs" />
+    <Compile Include="Model\Tanar.cs" />
+    <Compile Include="Model\Verseny.cs" />
     <Compile Include="RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
     <Page Include="CompetitionListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CreateCompetitionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LoginPage.xaml">
       <SubType>Designer</SubType>

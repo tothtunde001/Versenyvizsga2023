@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using TantargyVersenyek.Model;
 
 namespace TantargyVersenyek
 {
@@ -62,8 +64,9 @@ namespace TantargyVersenyek
             // Sikeres bejelentkezés
             MessageLabel.Content = body.Message;
 
+
             //Itt kell átirányítani a verseny oldalra
-            mainFrame.Navigate(new CompetitionList(mainFrame));
+            mainFrame.Navigate(new CompetitionList(mainFrame, UserTextBox.Text));
 
         }
 
@@ -82,5 +85,23 @@ namespace TantargyVersenyek
     {
         public string Status { get; set; }
         public string Message { get; set; }
+    }
+
+    public class TanarResponse
+    {
+        public string Status { get; set; }
+        public List<Tanar> Data { get; set; }
+    }
+
+    public class KerdesResponse
+    {
+        public string Status { get; set; }
+        public List<Kerdes> Data { get; set; }
+    }
+
+    public class VersenyResponse
+    {
+        public string Status { get; set; }
+        public List<Verseny> Data { get; set; }
     }
 }

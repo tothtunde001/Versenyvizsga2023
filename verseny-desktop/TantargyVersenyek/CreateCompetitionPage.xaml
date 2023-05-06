@@ -1,0 +1,21 @@
+﻿<Page x:Class="TantargyVersenyek.CreateCompetitionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TantargyVersenyek"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CreateCompetitionPage">
+
+    <Grid>
+        <Button x:Name="CreateCompetitionBtn" Content="Létrehozás" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Background="#FFB88C8C" Height="42" Click="CreateCompetitionBtn_Click" Margin="662,368,0,0"/>
+        <Label x:Name="NewCompetitionLabel" Content="Új Verseny" HorizontalAlignment="Left" Margin="328,26,0,0" VerticalAlignment="Top" Width="158" FontSize="24" Height="42"/>
+        <TextBox Name="CompetitionNameTextBox" HorizontalAlignment="Left" Height="32" Margin="131,141,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="524"/>
+        <TextBox Name="DescriptionTextBox" HorizontalAlignment="Left" Height="32" Margin="131,223,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="524"/>
+        <Label Content="Competition" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="351,110,0,0"/>
+        <Label Content="Description" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="351,192,0,0"/>
+        <Button x:Name="BackBtn" Content="Vissza" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Background="#FFB88C8C" Height="42" Click="BackBtn_Click" Margin="36,368,0,0"/>
+
+    </Grid>
+</Page>

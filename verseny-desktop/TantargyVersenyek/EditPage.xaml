@@ -1,0 +1,84 @@
+﻿<Page x:Class="TantargyVersenyek.EditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TantargyVersenyek"
+      mc:Ignorable="d" d:DesignWidth="800"
+      Title="EditPage" Height="610">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label x:Name="EditLabel" Content="Szerkesztés" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Height="42"/>
+        </StackPanel>
+        <GroupBox Grid.Row="1" Header="Alapadatok">
+            <StackPanel>
+                <Label>Competition:</Label>
+                <TextBox Name="CompetitionNameTextBox"></TextBox>
+                <Label>Description:</Label>
+                <TextBox Name="DescriptionTextBox"></TextBox>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Row="2" Header="Kérdések">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Column="0" Name="KerdesekDataGrid" AutoGenerateColumns="False" CanUserAddRows="False"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+RowBackground="#fff" FontWeight="Bold" Foreground="#525252"
+ScrollViewer.CanContentScroll="True" Height="390" MaxHeight="390"
+AlternatingRowBackground="#f2f2f2" BorderBrush="#000" BorderThickness="1"
+ScrollViewer.HorizontalScrollBarVisibility="Visible"
+ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id" Binding="{Binding Path='Id'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Question" Binding="{Binding Path='Question'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Answer1" Binding="{Binding Path='Answer1'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Answer2" Binding="{Binding Path='Answer2'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Answer3" Binding="{Binding Path='Answer3'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Answer4" Binding="{Binding Path='Answer4'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Correct Answer" Binding="{Binding Path='CorrectAnswer'}" IsReadOnly="True" />
+                        <DataGridTemplateColumn Header="Edit">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="EditBtn" Content="Edit" Click="EditBtn_Click" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Delete">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="DeleteBtn" Content="Delete" Click="DeleteBtn_Click" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Name="BackBtn" Content="Vissza" Width="80" Click="BackBtn_Click"></Button>
+
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Name="NewBtn" Width="80" Content="Új" Click="NewBtn_Click"></Button>
+                <Button Name="DeleteBtn" Width="80" Content="Törlés" Click="DeleteBtn_Click_1"></Button>
+                <Button Name="SaveBtn"  Width="80" Content="Mentés" Click="SaveBtn_Click"></Button>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Page>

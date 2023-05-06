@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TantargyVersenyek"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" SizeToContent="WidthAndHeight" Height="600.75" Width="1006">
     <Grid Name="GridTarolo">
         <Frame x:Name="_NavigationFrame" NavigationUIVisibility="Hidden" />
     </Grid>
