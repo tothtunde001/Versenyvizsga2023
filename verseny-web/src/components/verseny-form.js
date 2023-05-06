@@ -118,7 +118,6 @@ function submitCompetition(userId, versenyId, answersToSubmit, navigate) {
     .catch(error => {
         console.log(error.message);
     })
-
     
 }
 
