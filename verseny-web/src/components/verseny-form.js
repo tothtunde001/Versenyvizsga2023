@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Kerdes from "./kerdes";
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 
@@ -11,12 +11,18 @@ function VersenyForm() {
     const [verseny, setVerseny] = useState({});
     const [submitted, setSubmitted] = useState(false);
 
-    const userId = 1; //TODO: ennek a bejelentkezésből kell jönnie
+    const navigate = useNavigate();
+
+
+    const userId = 2; //TODO: ennek a bejelentkezésből kell jönnie
+
+    let answersToSubmit = {};
 
     let submitButton;
     if (!submitted) {
         submitButton = (
-            <button onClick={() => submitCompetition()} className="btn btn-warning m-2">Beküldöm</button>
+            <button onClick={() => submitCompetition(userId, versenyId, answersToSubmit, navigate)}
+                className="btn btn-warning m-2">Beküldöm</button>
         );
     }
 
@@ -30,7 +36,6 @@ function VersenyForm() {
                 return response.json();
             })
             .then(response => {
-                //console.log(response);
                 setKerdesek(response.kerdesek);
                 setVerseny(response.verseny);
                 setSubmitted(response.submitted)
@@ -39,6 +44,10 @@ function VersenyForm() {
                 console.log(error.message);
             })
     }, []);
+
+    let handleAnswerChange = (answerData) => {
+        answersToSubmit[answerData.questionId] = answerData.answerId;
+    }
 
     //const [currentQuestion, setCurrentQuestion] = useState(0);
     //const [score, setScore] = useState(0);
@@ -76,6 +85,7 @@ function VersenyForm() {
                         question={kerdes}
                         questionNumber={index}
                         submitted={submitted}
+                        onAnswerChange={handleAnswerChange}
                     ></Kerdes>
                 ))
             }
@@ -87,8 +97,29 @@ function VersenyForm() {
     );
 }
 
-function submitCompetition() {
-    console.log("verseny beküldése")
+function submitCompetition(userId, versenyId, answersToSubmit, navigate) {
+    fetch('http://127.0.0.1:8000/api/verseny/diak/submit', {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+            "studentId": userId,
+            "competitionId": versenyId,
+            "studentAnswers": answersToSubmit
+        })
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(response => {
+        alert(response.message);
+        //Navigáljunk a versenyek oldalra
+        navigate("/verseny");
+    })
+    .catch(error => {
+        console.log(error.message);
+    })
+
+    
 }
 
 export default VersenyForm;

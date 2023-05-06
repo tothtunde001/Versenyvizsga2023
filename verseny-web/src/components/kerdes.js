@@ -5,6 +5,22 @@ function Kerdes(props) {
 
     let answerNumbers = [1, 2, 3, 4];
 
+    const handleAnswerQuestion = (questionId, answerId) => {
+        for (let i = 1; i < 5; i++) {
+            let button = document.getElementById('answer-button-' + questionId + '-' + i);
+
+            if (i === answerId) {
+                button.classList.add("btn-warning");
+            }
+            else {
+                button.classList.remove("btn-warning");
+            }
+        }
+
+        //Felküldjük a kattintott választ a verseny-formnak
+        props.onAnswerChange({ questionId, answerId });
+    }
+
     return (
         <div className="card m-3">
             <div className="card-body">
@@ -19,14 +35,15 @@ function Kerdes(props) {
                     <div className="row row-cols-2">
 
                         {
-                            answerNumbers.map((num) => (
-                                <div className="col" key={num}>
-                                <button
-                                    className={`btn w-100 mb-3 border border-2
-                                        ${isCorrectAnswer(submitted, questionData, num) ? "btn-success" : ""}
-                                        ${isWrongAnswer(submitted, questionData, num) ? "btn-danger" : ""}`}
+                            answerNumbers.map((answerId) => (
+                                <div className="col" key={answerId}>
+                                    <button id={'answer-button-' + questionData.id + '-' + answerId}
+                                        className={`btn w-100 mb-3 border border-2
+                                        ${isCorrectAnswer(submitted, questionData, answerId) ? "btn-success" : ""}
+                                        ${isWrongAnswer(submitted, questionData, answerId) ? "btn-danger" : ""}`}
+                                        onClick={() => handleAnswerQuestion(questionData.id, answerId) }
                                 >
-                                    {questionData['answer'+num]}
+                                        {questionData['answer' + answerId]}
                                 </button>
                             </div>
                         ))
@@ -39,6 +56,8 @@ function Kerdes(props) {
          
     );
 }
+
+
 
 function isCorrectAnswer(submitted, questionData, currentAnswer) {
     if (submitted &&

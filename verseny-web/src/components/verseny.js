@@ -6,8 +6,10 @@ function Verseny() {
 
     const [versenyek, setVersenyek] = useState([]);
 
+    const userId = 2; //TODO: ennek a bejelentkezésből kell jönnie
+
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/api/verseny/diak/list/1')
+        fetch('http://127.0.0.1:8000/api/verseny/diak/list/' + userId)
             .then(response => {
                 return response.json();
             })
