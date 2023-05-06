@@ -10,6 +10,7 @@ function VersenyForm() {
     const [kerdesek, setKerdesek] = useState([]);
     const [verseny, setVerseny] = useState({});
     const [submitted, setSubmitted] = useState(false);
+    const [score, setScore] = useState("");
 
     const navigate = useNavigate();
 
@@ -43,6 +44,16 @@ function VersenyForm() {
                 setKerdesek(response.kerdesek);
                 setVerseny(response.verseny);
                 setSubmitted(response.submitted)
+
+                if (response.submitted) {
+                    let count = 0;
+                    response.kerdesek.map((kerdes) => {
+                        if (kerdes.correctAnswer === kerdes.studentAnswer) {
+                            count++;
+                        }
+                    })
+                    setScore("Pontszámod: " + count + "/" + response.kerdesek.length);
+                }
             })
             .catch(error => {
                 console.log(error.message);
@@ -52,21 +63,6 @@ function VersenyForm() {
     let handleAnswerChange = (answerData) => {
         answersToSubmit[answerData.questionId] = answerData.answerId;
     }
-
-    //const [currentQuestion, setCurrentQuestion] = useState(0);
-    //const [score, setScore] = useState(0);
-    //const [showScore, setShowScore] = useState(false);
-    //const handleAnswerResponse = (isCorrect) => {
-    //    if (isCorrect) {
-    //        setScore(score + 1);
-    //    }
-    //    const nextQuestion = currentQuestion + 1;
-    //    if (nextQuestion < KerdesBank.length) {
-    //        setCurrentQuestion(nextQuestion);
-    //    }
-    //    else
-    //        setShowScore(true);
-    //}
 
     return (
 
@@ -79,6 +75,10 @@ function VersenyForm() {
 
                     <div>
                         {verseny.description}
+                    </div>
+
+                    <div>
+                        {score}
                     </div>
                 </div>
             </div>
