@@ -1,12 +1,20 @@
 import Message from "../components/message/Message";
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import VersenyItem from "../components/verseny-item";
 
 function Verseny() {
 
     const [versenyek, setVersenyek] = useState([]);
 
-    const userId = 2; //TODO: ennek a bejelentkezésből kell jönnie
+    const navigate = useNavigate();
+
+    // A userId-t a local storage-ból szedjük ki
+    const userId = localStorage.getItem("userId");
+    // Ha nem vagyunk bejelentkezve, akkor a Bejelentkezé oldalra navigálunk
+    if (userId === null) {
+        navigate("/bejelentkezes");
+    }
 
     useEffect(() => {
         fetch('http://127.0.0.1:8000/api/verseny/diak/list/' + userId)

@@ -13,8 +13,12 @@ function VersenyForm() {
 
     const navigate = useNavigate();
 
-
-    const userId = 2; //TODO: ennek a bejelentkezésből kell jönnie
+    // A userId-t a local storage-ból szedjük ki
+    const userId = localStorage.getItem("userId");
+    // Ha nem vagyunk bejelentkezve, akkor a Bejelentkezé oldalra navigálunk
+    if (userId === null) {
+        navigate("/bejelentkezes");
+    }
 
     let answersToSubmit = {};
 

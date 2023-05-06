@@ -1,37 +1,62 @@
 import { Component } from "react";
 import "./NavbarStyles.css";
 import { MenuItems } from "./MenuItems";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-class Navbar extends Component {
-  state = {clicked:false};
-  handleClick=()=>{
-    this.setState({clicked:!this.state.clicked})
-  }
-  render() {
+
+function Navbar() {
+
+    const navigate = useNavigate();
+
+    const userId = localStorage.getItem("userId");
+    const userName = localStorage.getItem("userName");
+
+    const logout = () => {
+        localStorage.removeItem("userId");
+        localStorage.removeItem("userName");
+        navigate("/");
+    }
+
+    let button;
+    if (!userId) {
+        button = <Link className="login-button" to="/bejelentkezes">Bejelentkezés</Link>
+    }
+    else {
+        button = <button className="login-button" onClick={logout}>Kijelentkezés</button>
+        loginMessage = userId;
+    }
+
+    let loginMessage = "";
+    if (userName) {
+        loginMessage = userName;
+    }
+
     return (
-      <nav className="NavbarItems">
-        <h1 className="navbar-logo">Verseny</h1>
-        <div className="menu-icons" onClick={this.handleClick}>
-          <i className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}>
+        <div>
+            <nav className="NavbarItems">
+                <h1 className="navbar-logo">Verseny</h1>
 
-          </i>
-  
+                <ul className="nav-menu">
+                    {MenuItems.map((item, index) => {
+                        return (
+                            <li key={index}>
+                                <Link className="nav-links" to={item.url}>
+                                    <i className={item.icon}></i>{item.title}
+                                </Link>
+                            </li>
+                        )
+                    })}
+
+                    {button}
+                </ul>
+                <div className="logintext mr-2">
+                    {loginMessage}
+                </div>
+            </nav>
+            
         </div>
-        <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
-          {MenuItems.map((item,index)=>{
-            return(
-            <li key={index}>
-              <Link className={item.cName} to={item.url}>
-                <i className={item.icon}></i>{item.title}
-              </Link>
-            </li>
-            )
-          })}
-          <Link className="login-button" to="/bejelentkezes">Bejelentkezés</Link>
-        </ul>
-      </nav>
+        
     );
-  }
 }
+  
 export default Navbar;

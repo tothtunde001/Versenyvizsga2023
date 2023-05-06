@@ -1,34 +1,23 @@
 export const MenuItems = [
   {
     title: "Kezdőlap",
-    url: "/",
-    cName: "nav-links"
+    url: "/"
   },
   {
     title: "Verseny",
-    url: "/verseny",
-    cName: "nav-links"
+    url: "/verseny"
   },
   {
     title: "Diákok",
-    url: "/diakok",
-    cName: "nav-links"
+    url: "/diakok"
     
   },
   {
     title: "Tanárok",
-    url: "/tanarok",
-    cName: "nav-links"
+    url: "/tanarok"
   },
   {
     title: "Kapcsolat",
-    url: "/kapcsolat",
-    cName: "nav-links"
-  },
-  {
-    title: "Bejelentkezés",
-    url: "/bejelentkezes",
-    cName: "nav-links-mobile"
-   
+    url: "/kapcsolat"
   }
 ];
