@@ -1,5 +1,4 @@
 import Message from "../components/message/Message";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import VersenyItem from "../components/verseny-item";
 
@@ -13,7 +12,7 @@ function Verseny() {
                 return response.json();
             })
             .then(response => {
-                console.log(response);
+                //console.log(response);
                 setVersenyek(response.data);
             })
             .catch(error => {
@@ -21,13 +20,11 @@ function Verseny() {
             })
     }, []);
 
-    
-
 return(
   <div>
         <Message 
           title="Kedves Versenyző!"
-          text="Az alábbi versenyek közül választhatsz. Minden versenyt csak egyszer tölthetsz ki. Kitöltés után megtekintheted az eredményeidet"
+            text="Az alábbi versenyek közül választhatsz. Minden versenyt csak egyszer tölthetsz ki. Kitöltés után megtekintheted az eredményeidet"
           btnClass="hide"
         />
 
