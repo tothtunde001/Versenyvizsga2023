@@ -40,16 +40,16 @@ ScrollViewer.HorizontalScrollBarVisibility="Visible"
 ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id" Binding="{Binding Path='Id'}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="Question" Binding="{Binding Path='Question'}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="Answer1" Binding="{Binding Path='Answer1'}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="Answer2" Binding="{Binding Path='Answer2'}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="Answer3" Binding="{Binding Path='Answer3'}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="Answer4" Binding="{Binding Path='Answer4'}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="Correct Answer" Binding="{Binding Path='CorrectAnswer'}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Question" Binding="{Binding Path='Question'}" IsReadOnly="False"  />
+                        <DataGridTextColumn Header="Answer1" Binding="{Binding Path='Answer1'}" IsReadOnly="False" />
+                        <DataGridTextColumn Header="Answer2" Binding="{Binding Path='Answer2'}" IsReadOnly="False" />
+                        <DataGridTextColumn Header="Answer3" Binding="{Binding Path='Answer3'}" IsReadOnly="False" />
+                        <DataGridTextColumn Header="Answer4" Binding="{Binding Path='Answer4'}" IsReadOnly="False" />
+                        <DataGridTextColumn Header="CorrectAnswer" Binding="{Binding Path='CorrectAnswer'}" IsReadOnly="False" />
                         <DataGridTemplateColumn Header="Edit">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Name="EditBtn" Content="Edit" Click="EditBtn_Click" />
+                                    <Button Name="EditBtn" Content="Szerkesztés mentése" Click="EditBtn_Click" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -74,8 +74,7 @@ ScrollViewer.VerticalScrollBarVisibility="Auto">
 
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Name="NewBtn" Width="80" Content="Új" Click="NewBtn_Click"></Button>
-                <Button Name="DeleteBtn" Width="80" Content="Törlés" Click="DeleteBtn_Click_1"></Button>
+                <Button Name="NewBtn" Width="80" Content="Új kérdés" Click="NewBtn_Click"></Button>
                 <Button Name="SaveBtn"  Width="80" Content="Mentés" Click="SaveBtn_Click"></Button>
             </StackPanel>
         </Grid>

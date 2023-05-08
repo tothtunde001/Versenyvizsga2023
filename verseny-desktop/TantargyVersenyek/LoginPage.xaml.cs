@@ -93,12 +93,6 @@ namespace TantargyVersenyek
         public List<Tanar> Data { get; set; }
     }
 
-    public class KerdesResponse
-    {
-        public string Status { get; set; }
-        public List<Kerdes> Data { get; set; }
-    }
-
     public class VersenyResponse
     {
         public string Status { get; set; }

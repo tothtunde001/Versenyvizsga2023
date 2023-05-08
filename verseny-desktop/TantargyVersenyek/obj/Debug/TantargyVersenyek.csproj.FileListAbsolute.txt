@@ -456,3 +456,7 @@ C:\Users\Csilla\Downloads\verseny-desktop\verseny-desktop\TantargyVersenyek\obj\
 C:\Users\Csilla\Downloads\verseny-desktop\verseny-desktop\TantargyVersenyek\obj\Debug\TantargyVersenyek.csproj.CopyComplete
 C:\Users\Csilla\Downloads\verseny-desktop\verseny-desktop\TantargyVersenyek\obj\Debug\TantargyVersenyek.exe
 C:\Users\Csilla\Downloads\verseny-desktop\verseny-desktop\TantargyVersenyek\obj\Debug\TantargyVersenyek.pdb
+C:\Users\Csilla\Desktop\Vizsgamunka\Verseny\verseny-desktop\TantargyVersenyek\obj\Debug\CreateCompetitionPage.g.cs
+C:\Users\Csilla\Desktop\Vizsgamunka\Verseny\verseny-desktop\TantargyVersenyek\obj\Debug\EditPage.g.cs
+C:\Users\Csilla\Desktop\Vizsgamunka\Verseny\verseny-desktop\TantargyVersenyek\obj\Debug\CreateCompetitionPage.baml
+C:\Users\Csilla\Desktop\Vizsgamunka\Verseny\verseny-desktop\TantargyVersenyek\obj\Debug\EditPage.baml
