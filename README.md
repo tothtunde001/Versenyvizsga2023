@@ -18,4 +18,6 @@ Webalkalmazás (Diákoknak):
 - Indítsuk el a webalkalmazást: npm start
 
 Desktop alkalmazás (Tanároknak):
-TBA
+- Nyissuk meg a verseny-desktop mappát egy fejlesztői környezetben (pl Visual Studio)
+- Buileljük aztán futtassuk az alkalmazást
+- A buildelés után az alkalmazást a verseny-desktop\TantargyVersenyek\bin\Debug\TantargyVersenyek.exe indításával is futtathatjuk
