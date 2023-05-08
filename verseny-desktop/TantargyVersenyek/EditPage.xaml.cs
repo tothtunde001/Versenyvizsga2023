@@ -6,6 +6,8 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using TantargyVersenyek.Model;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
+using Ubiety.Dns.Core.Common;
 
 namespace TantargyVersenyek
 {
@@ -59,56 +61,6 @@ namespace TantargyVersenyek
             KerdesekDataGrid.ItemsSource = body_kerdes.Data;
         }
 
-        private async void EditBtn_Click(object sender, RoutedEventArgs e)
-        {
-            // Kérdés szerkesztése
-
-            Kerdes kerdes = (Kerdes)((Button)e.Source).DataContext;
-
-
-            var newQuestionData = new
-            {
-                competitionId = verseny.Id,
-                question = kerdes.Question,
-                answer1 = kerdes.Answer1,
-                answer2 = kerdes.Answer2,
-                answer3 = kerdes.Answer3,
-                answer4 = kerdes.Answer4,
-                correctAnswer = kerdes.CorrectAnswer
-            };
-
-
-            string jsonObject = JsonConvert.SerializeObject(newQuestionData);
-            var content = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
-
-            Console.WriteLine(jsonObject);
-
-            var response = client.PutAsync($"kerdes/update/{kerdes.Id}", content).Result;
-
-            if (!response.IsSuccessStatusCode)
-            {
-                Console.WriteLine(response);
-                MessageBox.Show("Kérdés módosítása sikertelen, ismeretlen hiba.", "Error", MessageBoxButton.OK);
-                return;
-            }
-
-            var responseBody = await response.Content.ReadAsStringAsync();
-            var body = JsonConvert.DeserializeObject<LoginResponse>(responseBody);
-
-            if (!body.Status.Equals("OK"))
-            {
-                // Kiírjuk a hibaüzenetet a response-ból
-                MessageBox.Show(body.Message, "Error", MessageBoxButton.OK);
-                return;
-            }
-
-            // Sikeres kérdés módosítás
-            MessageBox.Show(body.Message, "Kérdés módosítása", MessageBoxButton.OK);
-
-
-            //LoadData();
-        }
-
         private async void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             Kerdes kerdes = (Kerdes)((Button)e.Source).DataContext;
@@ -146,30 +98,8 @@ namespace TantargyVersenyek
 
         private async void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            // Verseny alapadatok frissítése
-
-            var newData = new
-            {
-                competition_name = CompetitionNameTextBox.Text,
-                description = DescriptionTextBox.Text,
-            };
-            string jsonObject = JsonConvert.SerializeObject(newData);
-            var content2 = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
-
-            var response2= client.PutAsync($"verseny/tanar/update/{verseny.Id}", content2).Result;
-
-            var responseBody = await response2.Content.ReadAsStringAsync();
-            var body = JsonConvert.DeserializeObject<GeneralResponse>(responseBody);
-
-            if (!body.Status.Equals("OK"))
-            {
-                // Kiírjuk a hibaüzenetet a response-ból
-                MessageBox.Show(body.Message, "Error", MessageBoxButton.OK);
-                return;
-            }
-
-            // Sikeres szerkesztés
-            MessageBox.Show(body.Message, "Operation Success", MessageBoxButton.OK);
+            saveCompetitionData();
+            saveQuestions();
         }
 
         private async void NewBtn_Click(object sender, RoutedEventArgs e)
@@ -220,7 +150,85 @@ namespace TantargyVersenyek
         {
             mainFrame.Navigate(new CompetitionList(mainFrame, username));
         }
+
+        private async void saveCompetitionData()
+        {
+            // Verseny alapadatok frissítése
+
+            var newData = new
+            {
+                competition_name = CompetitionNameTextBox.Text,
+                description = DescriptionTextBox.Text,
+            };
+            string jsonObject = JsonConvert.SerializeObject(newData);
+            var content2 = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
+
+            var response2 = client.PutAsync($"verseny/tanar/update/{verseny.Id}", content2).Result;
+
+            var responseBody = await response2.Content.ReadAsStringAsync();
+            var body = JsonConvert.DeserializeObject<GeneralResponse>(responseBody);
+
+            if (!body.Status.Equals("OK"))
+            {
+                // Kiírjuk a hibaüzenetet a response-ból
+                MessageBox.Show(body.Message, "Error", MessageBoxButton.OK);
+                return;
+            }
+
+            // Sikeres szerkesztés
+            MessageBox.Show(body.Message, "Operation Success", MessageBoxButton.OK);
+
+        }
+
+        private async void saveQuestions()
+        {
+            // Kérdések mentése
+
+            foreach (Kerdes kerdes in KerdesekDataGrid.ItemsSource)
+            {
+                var newQuestionData = new
+                {
+                    competitionId = verseny.Id,
+                    question = kerdes.Question,
+                    answer1 = kerdes.Answer1,
+                    answer2 = kerdes.Answer2,
+                    answer3 = kerdes.Answer3,
+                    answer4 = kerdes.Answer4,
+                    correctAnswer = kerdes.CorrectAnswer
+                };
+
+
+                var jsonObject = JsonConvert.SerializeObject(newQuestionData);
+                var content = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
+
+                Console.WriteLine(jsonObject);
+
+                var response = client.PutAsync($"kerdes/update/{kerdes.Id}", content).Result;
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine(response);
+                    MessageBox.Show("Kérdés módosítása sikertelen, ismeretlen hiba.", "Error", MessageBoxButton.OK);
+                    return;
+                }
+
+                var responseBody = await response.Content.ReadAsStringAsync();
+                var body = JsonConvert.DeserializeObject<GeneralResponse>(responseBody);
+
+                if (!body.Status.Equals("OK"))
+                {
+                    // Kiírjuk a hibaüzenetet a response-ból
+                    MessageBox.Show(body.Message, "Error", MessageBoxButton.OK);
+                    return;
+                }
+
+                // Sikeres kérdés módosítás
+                //MessageBox.Show(body.Message, "Kérdés módosítása", MessageBoxButton.OK);
+            }
+        }
     }
+
+
 
     public class KerdesResponse
     {

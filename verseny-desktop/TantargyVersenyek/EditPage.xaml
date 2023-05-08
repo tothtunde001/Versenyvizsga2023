@@ -46,13 +46,6 @@ ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <DataGridTextColumn Header="Answer3" Binding="{Binding Path='Answer3'}" IsReadOnly="False" />
                         <DataGridTextColumn Header="Answer4" Binding="{Binding Path='Answer4'}" IsReadOnly="False" />
                         <DataGridTextColumn Header="CorrectAnswer" Binding="{Binding Path='CorrectAnswer'}" IsReadOnly="False" />
-                        <DataGridTemplateColumn Header="Edit">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Name="EditBtn" Content="Szerkesztés mentése" Click="EditBtn_Click" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
                         <DataGridTemplateColumn Header="Delete">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

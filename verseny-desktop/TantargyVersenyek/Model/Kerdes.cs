@@ -8,7 +8,7 @@
         public string Answer2 { get; set; }
         public string Answer3 { get; set; }
         public string Answer4 { get; set; }
-        public string CorrectAnswer { get; set; }
+        public int CorrectAnswer { get; set; }
         public string CompetitionId { get; set; }
         public string Created_at { get; set; }
         public string Updated_at { get; set; }
