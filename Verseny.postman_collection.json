@@ -1,0 +1,519 @@
+{
+	"info": {
+		"_postman_id": "72f8e3ac-0bdd-4bc3-a4ff-74f6bb0171bd",
+		"name": "Verseny",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26558554"
+	},
+	"item": [
+		{
+			"name": "Diák",
+			"item": [
+				{
+					"name": "Diák regisztráció",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Csilla\",\r\n    \"password\" : \"csilla\",\r\n    \"email\" :\"csilla@csilla.com\",\r\n    \"fullname\" : \"Bognár Csilla\",\r\n    \"school\" : \"Bláthy Ottó Titiusz Informatikai Szakközép Iskola\",\r\n    \"class\" :\"14a\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/diakok/signup",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"diakok",
+								"signup"
+							]
+						},
+						"description": "Tanár regisztráció"
+					},
+					"response": []
+				},
+				{
+					"name": "Diák bejelentkezés",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Csilla\",\r\n    \"password\": \"csilla\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/diakok/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"diakok",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verseny beküldése",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentId\": 1,\r\n    \"competitionId\": 2,\r\n    \"studentAnswers\": {\r\n        \"2\": 4\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/verseny/diak/submit",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"verseny",
+								"diak",
+								"submit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Versenyek listázása",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/verseny/diak/list/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"verseny",
+								"diak",
+								"list",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Versenykérdések listázása",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/verseny/diak/view/2/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"verseny",
+								"diak",
+								"view",
+								"2",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tanár",
+			"item": [
+				{
+					"name": "Tanár regisztráció",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Csilla\",\r\n    \"password\" : \"csilla\",\r\n    \"email\" :\"csilla@csilla.com\",\r\n    \"fullname\" : \"Bognár Csilla\",\r\n    \"subject\" : \"matek\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/tanarok/signup",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"tanarok",
+								"signup"
+							]
+						},
+						"description": "Tanár regisztráció"
+					},
+					"response": []
+				},
+				{
+					"name": "Tanár bejelentkezés",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Csilla\",\r\n    \"password\": \"csilla\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/tanarok/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"tanarok",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verseny létrehozása",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"competition_name\":\"Matematika Verseny\",\r\n    \"description\":\"Ez itt a leírás\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/verseny/tanar/create",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"verseny",
+								"tanar",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Versenyek listázása",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/verseny/tanar/list",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"verseny",
+								"tanar",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verseny módosítása",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"competition_name\": \"Matematika Verseny2\",\r\n            \"description\": \"Ez itt a leírás2.\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/verseny/tanar/update/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"verseny",
+								"tanar",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verseny törlése",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/verseny/tanar/delete/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"verseny",
+								"tanar",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kérdés létrehozása",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"competitionId\": \"10\",\r\n    \"question\": \"Mintakérdés\",\r\n    \"answer1\": \"Válasz1\",\r\n    \"answer2\": \"Válasz2\",\r\n    \"answer3\": \"Válasz3\",\r\n    \"answer4\": \"Válasz4\",\r\n    \"correctAnswer\": 1\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/kerdes/create",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"kerdes",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kérdések listázása",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/kerdes/list/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"kerdes",
+								"list",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kérdés módosítása",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"competitionId\":1,\r\n        \"question\":\"Hány oldala van egy körnek?\",\r\n        \"answer1\":\"valamennyi\",\r\n        \"answer2\":\"0\",\r\n        \"answer3\":\"pont annyi\",\r\n        \"answer4\":\"nem tudom\",\r\n        \"correctAnswer\":2\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/kerdes/update/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"kerdes",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kérdés törlése",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/kerdes/delete/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"kerdes",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
