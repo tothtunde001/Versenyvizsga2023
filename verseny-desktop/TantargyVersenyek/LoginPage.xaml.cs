@@ -1,11 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using TantargyVersenyek.Model;
 
 namespace TantargyVersenyek
 {
@@ -38,7 +36,7 @@ namespace TantargyVersenyek
             var loginData = new
             {
                 username = UserTextBox.Text,
-                password = PasswordTextBox.Text,
+                password = PasswordTextBox.Text
             };
             string jsonData = JsonConvert.SerializeObject(loginData);
             var content = new StringContent(jsonData.ToString(), Encoding.UTF8, "application/json");
@@ -85,17 +83,5 @@ namespace TantargyVersenyek
     {
         public string Status { get; set; }
         public string Message { get; set; }
-    }
-
-    public class TanarResponse
-    {
-        public string Status { get; set; }
-        public List<Tanar> Data { get; set; }
-    }
-
-    public class VersenyResponse
-    {
-        public string Status { get; set; }
-        public List<Verseny> Data { get; set; }
     }
 }

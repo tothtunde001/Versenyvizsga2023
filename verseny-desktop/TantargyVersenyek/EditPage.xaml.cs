@@ -36,7 +36,6 @@ namespace TantargyVersenyek
             DescriptionTextBox.Text = verseny.Description;
             // Meghívjuk a verseny lista API-t
             HttpResponseMessage response = client.GetAsync($"kerdes/list/{verseny.Id}").Result;
-            //HttpResponseMessage response = client.GetAsync("tanarok").Result;
             if (!response.IsSuccessStatusCode)
             {
                 Console.WriteLine(response);
@@ -44,16 +43,16 @@ namespace TantargyVersenyek
                 return;
             }
             var responseBody = await response.Content.ReadAsStringAsync();
+            var body = JsonConvert.DeserializeObject<GeneralResponse>(responseBody);
+            if (!body.Status.Equals("OK"))
+            {
+                // Kiírjuk a hibaüzenetet a response-ból
+                MessageBox.Show(body.Message, "Error");
+                return;
+            }
+
             KerdesResponse body_kerdes = JsonConvert.DeserializeObject<KerdesResponse>(responseBody);
-            //if (!body.Status.Equals("OK"))
-            //{
-            //    // Kiírjuk a hibaüzenetet a response-ból
-            //    MessageLabel.Content = body.Message;
-            //    return;
-            //}
             RefreshDataTable(body_kerdes);
-            //TODO: be kell tölteni a versenyeket, és megjeleníteni az oldalon
-            //Mindegyikhez kell egy szerkesztés és egy törlés gomb
         }
 
         private void RefreshDataTable(KerdesResponse body_kerdes)
@@ -61,14 +60,17 @@ namespace TantargyVersenyek
             KerdesekDataGrid.ItemsSource = body_kerdes.Data;
         }
 
+        /// <summary>
+        /// Kérdés törlése
+        /// </summary>
         private async void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             Kerdes kerdes = (Kerdes)((Button)e.Source).DataContext;
-            var answer = MessageBox.Show(
+            var biztos = MessageBox.Show(
                 $"Biztosan törlöd az alábbi kérdést?\n({kerdes.Id}) {kerdes.Question}",
                 "Kérdés törlése", MessageBoxButton.YesNo);
 
-            if (answer != MessageBoxResult.Yes)
+            if (biztos != MessageBoxResult.Yes)
             {
                 return;
             }
@@ -84,7 +86,7 @@ namespace TantargyVersenyek
             }
 
             var responseBody = await response.Content.ReadAsStringAsync();
-            var body = JsonConvert.DeserializeObject<LoginResponse>(responseBody);
+            var body = JsonConvert.DeserializeObject<GeneralResponse>(responseBody);
 
             if (!body.Status.Equals("OK"))
             {
@@ -96,31 +98,35 @@ namespace TantargyVersenyek
             LoadData();
         }
 
+        /// <summary>
+        /// Verseny adatok és kérdések frissítése
+        /// </summary>
         private async void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             saveCompetitionData();
             saveQuestions();
         }
 
+        /// <summary>
+        /// Új kérdés hozzáadása a versenyhez
+        /// </summary>
         private async void NewBtn_Click(object sender, RoutedEventArgs e)
         {
-            // Új kérdés hozzáadása a versenyhez
- 
             var newQuestionData = new
             {
                 competitionId = verseny.Id,
-                question = "Mintakérdés",
-                answer1 = "Válasz1",
-                answer2 = "Válasz2",
-                answer3 = "Válasz3",
-                answer4 = "Válasz4",
+                question = "Minta kérdés",
+                answer1 = "Válasz 1",
+                answer2 = "Válasz 2",
+                answer3 = "Válasz 3",
+                answer4 = "Válasz 4",
                 correctAnswer = 1,
             };
-
 
             string jsonObject = JsonConvert.SerializeObject(newQuestionData);
             var content = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
 
+            // Meghívjuk a kérdés létrehozása API-t
             var response = client.PostAsync("kerdes/create", content).Result;
 
             if (!response.IsSuccessStatusCode)
@@ -131,7 +137,7 @@ namespace TantargyVersenyek
             }
 
             var responseBody = await response.Content.ReadAsStringAsync();
-            var body = JsonConvert.DeserializeObject<LoginResponse>(responseBody);
+            var body = JsonConvert.DeserializeObject<GeneralResponse>(responseBody);
 
             if (!body.Status.Equals("OK"))
             {
@@ -151,10 +157,11 @@ namespace TantargyVersenyek
             mainFrame.Navigate(new CompetitionList(mainFrame, username));
         }
 
+        /// <summary>
+        /// Verseny alapadatok frissítése
+        /// </summary>
         private async void saveCompetitionData()
         {
-            // Verseny alapadatok frissítése
-
             var newData = new
             {
                 competition_name = CompetitionNameTextBox.Text,
@@ -163,6 +170,7 @@ namespace TantargyVersenyek
             string jsonObject = JsonConvert.SerializeObject(newData);
             var content2 = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
 
+            // Meghívjuk a verseny frissítése API-t
             var response2 = client.PutAsync($"verseny/tanar/update/{verseny.Id}", content2).Result;
 
             var responseBody = await response2.Content.ReadAsStringAsync();
@@ -180,10 +188,11 @@ namespace TantargyVersenyek
 
         }
 
+        /// <summary>
+        /// Kérdések mentése
+        /// </summary>
         private async void saveQuestions()
         {
-            // Kérdések mentése
-
             foreach (Kerdes kerdes in KerdesekDataGrid.ItemsSource)
             {
                 var newQuestionData = new
@@ -201,7 +210,7 @@ namespace TantargyVersenyek
                 var jsonObject = JsonConvert.SerializeObject(newQuestionData);
                 var content = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
 
-                Console.WriteLine(jsonObject);
+                //Console.WriteLine(jsonObject);
 
                 var response = client.PutAsync($"kerdes/update/{kerdes.Id}", content).Result;
 
@@ -228,17 +237,9 @@ namespace TantargyVersenyek
         }
     }
 
-
-
     public class KerdesResponse
     {
         public string Status { get; set; }
         public List<Kerdes> Data { get; set; }
-    }
-
-    public class GeneralResponse
-    {
-        public string Status { get; set; }
-        public string Message { get; set; }
     }
 }

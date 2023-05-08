@@ -1,19 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using TantargyVersenyek.Model;
 
 namespace TantargyVersenyek
 {
@@ -33,6 +24,9 @@ namespace TantargyVersenyek
             this.username = username;
         }
 
+        /// <summary>
+        /// Új verseny létrehozása
+        /// </summary>
         private async void CreateCompetitionBtn_Click(object sender, RoutedEventArgs e)
         {
             // Összerakjuk a request body-t a bejelentkezéshez
@@ -44,7 +38,7 @@ namespace TantargyVersenyek
             string jsonData = JsonConvert.SerializeObject(newCompetitionData);
             var content = new StringContent(jsonData.ToString(), Encoding.UTF8, "application/json");
 
-            // Meghívjuk a bejelentkezés API-t
+            // Meghívjuk a verseny létrehozása API-t
             HttpResponseMessage response = client.PostAsync("verseny/tanar/create", content).Result;
             if (!response.IsSuccessStatusCode)
             {
@@ -54,7 +48,7 @@ namespace TantargyVersenyek
             }
 
             var responseBody = await response.Content.ReadAsStringAsync();
-            var body = JsonConvert.DeserializeObject<LoginResponse>(responseBody);
+            var body = JsonConvert.DeserializeObject<GeneralResponse>(responseBody);
 
             if (!body.Status.Equals("OK"))
             {
@@ -62,26 +56,13 @@ namespace TantargyVersenyek
                 Console.WriteLine(body.Message);
                 return;
             }
-            MessageBoxResult result = MessageBox.Show("Új verseny létrehozva!", "Operation Success", MessageBoxButton.OK);
-            switch (result)
-            {
-                case MessageBoxResult.OK:
-                    mainFrame.Navigate(new CompetitionList(mainFrame, username));
-                    break;
-                case MessageBoxResult.No:
-                    MessageBox.Show("Oh well, too bad!", "My App");
-                    break;
-                case MessageBoxResult.Cancel:
-                    MessageBox.Show("Nevermind then...", "My App");
-                    break;
-            }
-            //....
+            MessageBox.Show("Új verseny létrehozva!", "Operation Success");
+            mainFrame.Navigate(new CompetitionList(mainFrame, username));
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new CompetitionList(mainFrame, username));
-            
+            mainFrame.Navigate(new CompetitionList(mainFrame, username));   
         }
     }
 }

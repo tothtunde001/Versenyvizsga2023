@@ -14,7 +14,6 @@ namespace TantargyVersenyek
     public partial class RegistrationPage : Page
     {
         Frame mainFrame;
-        MySqlConnection conn;
 
         HttpClient client = new HttpClient();
         public RegistrationPage(Frame frame)

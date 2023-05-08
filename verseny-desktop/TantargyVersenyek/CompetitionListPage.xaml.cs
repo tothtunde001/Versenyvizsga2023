@@ -38,14 +38,13 @@ namespace TantargyVersenyek
 
         private void NewCompetition_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Át kell navigálni egy új oldalra, ahol a versenyt lehet létrehozni
-            //Itt kell átirányítani a verseny oldalra
+            //Átnavigálunk egy új oldalra, ahol a versenyt lehet létrehozni
             mainFrame.Navigate(new CreateCompetitionPage(mainFrame, username));
         }
 
         private async void loadCompetitions()
         {
-            //// Meghívjuk a taná lista API-t -> Ez az API nem került implementáéásra
+            //// Meghívjuk a tanár lista API-t -> Ez a funkció nem került implementáéásra
             //HttpResponseMessage response = client.GetAsync("tanarok").Result;
             ////HttpResponseMessage response = client.GetAsync("tanarok").Result;
             //if (!response.IsSuccessStatusCode)
@@ -81,7 +80,6 @@ namespace TantargyVersenyek
 
             // Meghívjuk a verseny lista API-t
             HttpResponseMessage response = client.GetAsync("verseny/tanar/list").Result;
-            //HttpResponseMessage response = client.GetAsync("tanarok").Result;
             if (!response.IsSuccessStatusCode)
             {
                 Console.WriteLine(response);
@@ -100,16 +98,8 @@ namespace TantargyVersenyek
                 //}
 
             }
-            //if (!body.Status.Equals("OK"))
-            //{
-            //    // Kiírjuk a hibaüzenetet a response-ból
-            //    MessageLabel.Content = body.Message;
-            //    return;
-            //}
             MessageLabel.Content = body_verseny.Data;
             RefreshDataTable();
-            //TODO: be kell tölteni a versenyeket, és megjeleníteni az oldalon
-            //Mindegyikhez kell egy szerkesztés és egy törlés gomb
         }
 
         private void RefreshDataTable()
@@ -152,51 +142,57 @@ namespace TantargyVersenyek
             }
         }
 
+        /// <summary>
+        /// Verseny törlése
+        /// </summary>
         private async void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            Verseny versenyObjektum = null;
-            try
+
+            DataGridModel verseny = (DataGridModel)((Button)e.Source).DataContext;
+
+            var biztos = MessageBox.Show(
+            $"Biztosan törlöd az alábbi versenyt?\n({verseny.Id}) {verseny.Competition}",
+            "Kérdés törlése", MessageBoxButton.YesNo);
+
+            if (biztos != MessageBoxResult.Yes)
             {
-                DataGridModel dataRowView = (DataGridModel)((Button)e.Source).DataContext;
-                //String Competition = dataRowView[1].ToString();
-                //String Description = dataRowView[2].ToString();
-                MessageBox.Show("You Clicked : " + dataRowView.Competition + "\r\n " + dataRowView.Description);
-                //This is the code which will show the button click row data. Thank you.
-
-
-                var versenyId = dataRowView.Id;
-
-                ////$"/api/sessions/{id}"
-                // Meghívjuk a bejelentkezés API-t
-                await client.DeleteAsync($"verseny/tanar/delete/{versenyId}");
-                //if (!response.IsSuccessStatusCode)
-                //{
-                //    Console.WriteLine(response);
-                //    Console.WriteLine("verseny törlés sikertelen, ismeretlen hiba.");
-                //    return;
-                //}
-
-                //var responseBody = await response.Content.ReadAsStringAsync();
-                //var body = JsonConvert.DeserializeObject<LoginResponse>(responseBody);
-
-                //if (!body.Status.Equals("OK"))
-                //{
-                //    // Kiírjuk a hibaüzenetet a response-ból
-                //    Console.WriteLine(body.Message);
-                //    return;
-                //}
-
-                loadCompetitions();
+                return;
             }
-            catch (Exception ex)
+
+
+            var versenyId = verseny.Id;
+
+            // Meghívjuk a verseny törlése API-t
+            var response = await client.DeleteAsync($"verseny/tanar/delete/{versenyId}");
+            if (!response.IsSuccessStatusCode)
             {
-                MessageBox.Show(ex.Message.ToString());
+                Console.WriteLine(response);
+                MessageBox.Show("Verseny törlés sikertelen, ismeretlen hiba.", "Error");
+                return;
             }
+
+            var responseBody = await response.Content.ReadAsStringAsync();
+            var body = JsonConvert.DeserializeObject<LoginResponse>(responseBody);
+
+            if (!body.Status.Equals("OK"))
+            {
+                // Kiírjuk a hibaüzenetet a response-ból
+                Console.WriteLine(body.Message);
+                return;
+            }
+
+            loadCompetitions();
         }
 
         private void LogoutBtn_Click(object sender, RoutedEventArgs e)
         {
             mainFrame.Navigate(new LoginPage(mainFrame));
         }
+    }
+
+    public class VersenyResponse
+    {
+        public string Status { get; set; }
+        public List<Verseny> Data { get; set; }
     }
 }

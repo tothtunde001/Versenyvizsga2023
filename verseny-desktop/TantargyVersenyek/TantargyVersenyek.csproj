@@ -187,7 +187,7 @@
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\DataGridModel.cs" />
-    <Compile Include="Model\EditDataGridModel.cs" />
+    <Compile Include="Model\GeneralResponse.cs" />
     <Compile Include="Model\Kerdes.cs" />
     <Compile Include="Model\Tanar.cs" />
     <Compile Include="Model\Verseny.cs" />
