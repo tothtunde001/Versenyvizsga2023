@@ -1,3 +1,9 @@
+Bognár Csilla, Maties Mónika, Tóth Tünde tanulók
+2/14G osztály
+Schneider Dávid konzulens
+Vizsgaremek címe: Tudástér – ahol hasznos a lógás
+
+
 "Verseny" vizsgamunka
 
 Az alkalmazás elindítása:
